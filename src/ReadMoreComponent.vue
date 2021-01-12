@@ -1,13 +1,25 @@
 <template>
-	<div>
-		<p v-html="formattedString">
-      <span v-html="formattedString"> </span>
-			<span v-show="text.length > maxChars">
-				<a :href="link" id="readmore" v-show="!isReadMore" v-on:click="triggerReadMore($event, true)">{{moreStr}}</a>
-				<a :href="link" id="readmore" v-show="isReadMore" v-on:click="triggerReadMore($event, false)">{{lessStr}}</a>
-			</span>
-		</p>
-	</div>
+  <div>
+    <p v-html="formattedString">
+      <span v-html="formattedString"></span>
+      <span v-show="text.length > maxChars">
+        <a
+          :href="link"
+          id="readmore"
+          v-show="!isReadMore"
+          v-on:click="triggerReadMore($event, true)"
+          >{{ moreStr }}</a
+        >
+        <a
+          :href="link"
+          id="readmore"
+          v-show="isReadMore"
+          v-on:click="triggerReadMore($event, false)"
+          >{{ lessStr }}</a
+        >
+      </span>
+    </p>
+  </div>
 </template>
 
 <script>
@@ -15,29 +27,29 @@ export default {
   props: {
     moreStr: {
       type: String,
-      default: "read more"
+      default: "read more",
     },
     lessStr: {
       type: String,
-      default: ""
+      default: "",
     },
     text: {
       type: String,
-      required: true
+      required: true,
     },
     link: {
       type: String,
-      default: "#"
+      default: "#",
     },
     maxChars: {
       type: Number,
-      default: 100
-    }
+      default: 100,
+    },
   },
 
   data() {
     return {
-      isReadMore: false
+      isReadMore: false,
     };
   },
 
@@ -50,7 +62,7 @@ export default {
       }
 
       return val_container;
-    }
+    },
   },
 
   methods: {
@@ -59,7 +71,7 @@ export default {
         e.preventDefault();
       }
       if (this.lessStr !== null || this.lessStr !== "") this.isReadMore = b;
-    }
-  }
+    },
+  },
 };
 </script>
