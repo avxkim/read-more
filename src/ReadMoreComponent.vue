@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <article>
     <span v-html="formattedString"></span>
     <span v-show="text.length > maxChars">
       <a
@@ -17,7 +17,7 @@
         >{{ lessStr }}</a
       >
     </span>
-  </div>
+  </article>
 </template>
 
 <script>
