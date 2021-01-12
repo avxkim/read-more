@@ -1,52 +1,54 @@
-var path = require('path')
-var webpack = require('webpack')
+var path = require("path");
+var webpack = require("webpack");
+const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
-    filename: 'index.js',
-    library:'vue-read-more',
-    libraryTarget: 'umd'
+    path: path.resolve(__dirname, "./dist"),
+    publicPath: "/dist/",
+    filename: "index.js",
+    library: "vue-read-more",
+    libraryTarget: "umd",
   },
   module: {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
+        loader: "vue-loader",
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
-      }
-    ]
+        loader: "babel-loader",
+        exclude: /node_modules/,
+      },
+    ],
   },
   externals: {
-    vue: 'vue'
+    vue: "vue",
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    }
+      vue$: "vue/dist/vue.esm.js",
+    },
   },
   devServer: {
     historyApiFallback: true,
-    noInfo: true
+    noInfo: true,
   },
   performance: {
-    hints: false
+    hints: false,
   },
-  devtool: '#source-map',
+  devtool: "#source-map",
   plugins: [
+    new VueLoaderPlugin(),
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
+      "process.env": {
+        NODE_ENV: '"production"',
+      },
     }),
     new webpack.LoaderOptionsPlugin({
-      minimize: true
-    })
-  ]
-}
+      minimize: true,
+    }),
+  ],
+};
